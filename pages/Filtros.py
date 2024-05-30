@@ -19,12 +19,14 @@ col1,col2,col3 = st.columns(3)
 weeks = df_loc['Dia'].value_counts().index
 week = col1.selectbox('Dia', weeks)
 df_week = df_loc[df_loc['Dia'] == week]
-periodos = df_week['Período'].value_counts().index
-periodo = col2.selectbox('Período', periodos)
-df_peri = df_week[df_week['Período'] == periodo]
-cias = df_peri['CIA PM'].value_counts().index
+
+#periodos = df_week['Período'].value_counts().index
+#periodo = col2.selectbox('Período', periodos)
+#df_peri = df_week[df_week['Período'] == periodo]
+
+cias = df_week['CIA PM'].value_counts().index
 cia = col3.selectbox('Cia PM', cias)
-df_cia = df_peri[df_peri['CIA PM'] == cia]
+df_cia = df_week[df_week['CIA PM'] == cia]
 
 dfcol = ['Dia','Hora','Período', 'Crime','Tipo do veículo','Marca','Modelo', 'Placa','Ano','Endereço','Bairro','Subsetor','Localizado?','Data da Recuperação', 'Bairro da recuperação', 'Ambiente']
 st.dataframe(df_cia[dfcol],
