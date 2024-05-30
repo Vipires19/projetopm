@@ -20,7 +20,7 @@ weeks = df_loc['Dia'].value_counts().index
 week = col1.selectbox('Dia', weeks)
 df_week = df_loc[df_loc['Dia'] == week]
 
-mont = df_week[df_week.index().value_counts().index]
+mont = df_week[df_week.index()].value_counts().index
 mots = col1.selectbox('Mês', mont)
 
 periodos = df_week['Período'].value_counts().index
