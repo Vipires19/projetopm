@@ -1,9 +1,9 @@
-
 import streamlit as st
 import pandas as pd
+import seaborn as sns
 
 if 'data' not in st.session_state:
-    df = pd.read_excel('veic_produto.xlsx')
+    df = pd.read_excel(r'C:\Users\user\Downloads\Data science\Python\projeto_chatbot\projeto_pm\veic_produto.xlsx')
     colunas = {'dia':'Dia', 'semana':'Dia da semana', 'hora':'Hora', 'periodo':'Período','mes':'Mês', 'crime':'Crime','cia':'CIA PM', 'endereco':'Endereço',
        'bairro':'Bairro', 'subsetor':'Subsetor', 'cidade':'Cidade', 'data_recuperado':'Data da Recuperação', 'bairro_recuperado':'Bairro da recuperação',
        'ambiente':'Ambiente', 'tipo':'Tipo do veículo', 'marca':'Marca', 'modelo':'Modelo', 'placa':'Placa', 'ano':'Ano','flagrante':'Flagrante?',
@@ -85,21 +85,31 @@ df_set = df_crime['Subsetor'].value_counts()
 
 
 
-col1,col2,col3 = st.columns(3)
+col1,col2,col3,col4,col5,col6 = st.columns(6)
 col1.markdown('**Período**')
 col1.dataframe(df_peri)
 col1.divider()
-col1.markdown('**Vítimas**')
-col1.dataframe(df_vit)
-col2.markdown('**Tipo de veículo**')
-col2.dataframe(df_tipo)
+col2.bar_chart(df_peri, y=["count"], color=["#cfc31b"])
 col2.divider()
-col2.markdown('**Subsetores**')
-col2.dataframe(df_set)
+col3.markdown('**Tipo de veículo**')
+col3.dataframe(df_tipo)
+col3.divider()
+col4.bar_chart(df_tipo, y=["count"], color=["#0b63de"])
+col4.divider()
+col5.markdown('**Vítimas**')
+col5.dataframe(df_vit)
+col6.bar_chart(df_vit, y=["count"], color=["#de2e0b"])
+col6.divider()
+col1.markdown('**Subsetores**')
+col1.dataframe(df_set)
+col2.bar_chart(df_set, y=["count"], color=["#996c03"])
+col2.divider()
 col3.markdown('**Bairros**')
 col3.dataframe(df_bairro)
-col3.divider()
-               
+col4.bar_chart(df_bairro, y=["count"], color=["#737373"])
+col4.divider()
+col6.metric('**Total de crimes**:', df_crime['Crime'].value_counts())
+col6.metric('**Total de crimes**:', df_crime['Crime'].value_counts())               
 
 st.divider()
 
