@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
 
 if 'data' not in st.session_state:
     df = pd.read_excel('veic_produto.xlsx')
