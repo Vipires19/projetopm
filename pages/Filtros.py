@@ -20,7 +20,7 @@ weeks = df_loc['Dia da semana'].value_counts().index
 week = col1.selectbox('Dia da semana', weeks)
 df_week = df_loc[df_loc['Dia da semana'] == week]
 periodos = df_week['Período'].value_counts().index
-periodo = col2.selectbox('Dia da semana', periodos)
+periodo = col2.selectbox('Período', periodos)
 df_peri = df_week[df_week['Período'] == periodo]
 cias = df_peri['CIA PM'].value_counts().index
 cia = col3.selectbox('Cia PM', cias)
