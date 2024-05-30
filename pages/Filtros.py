@@ -24,17 +24,17 @@ df_week = df_loc[df_loc['Dia'] == week]
 #periodo = col2.selectbox('Período', periodos)
 #df_peri = df_week[df_week['Período'] == periodo]
 
-cias = df_week['CIA PM'].value_counts().index
-cia = col3.selectbox('Cia PM', cias)
-df_cia = df_week[df_week['CIA PM'] == cia]
+#cias = df_week['CIA PM'].value_counts().index
+#cia = col3.selectbox('Cia PM', cias)
+#df_cia = df_week[df_week['CIA PM'] == cia]
 
 dfcol = ['Dia','Hora','Período', 'Crime','Tipo do veículo','Marca','Modelo', 'Placa','Ano','Endereço','Bairro','Subsetor','Localizado?','Data da Recuperação', 'Bairro da recuperação', 'Ambiente']
-st.dataframe(df_cia[dfcol],
+st.dataframe(df_week[dfcol],
              column_config= {'Data da Recuperação' : st.column_config.DateColumn()})
 
-ocr = df_cia['Endereço'].value_counts().index
+ocr = df_week['Endereço'].value_counts().index
 ocrs = st.selectbox('Endereço da ocorrência', ocr)
-df_ocr = df_cia[df_cia['Endereço'] == ocrs]
+df_ocr = df_week[df_week['Endereço'] == ocrs]
 st.markdown(f'**Bairro**: {list(df_ocr["Bairro"])[0]}')
 sector = list(df_ocr['Subsetor'])[0].split('.')[-1]
 st.markdown(f'**Setor**: {sector}')
