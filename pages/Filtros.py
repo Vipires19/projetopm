@@ -17,7 +17,7 @@ df_loc = df_tipo[df_tipo['Localizado?'] == loc]
 
 col1,col2,col3 = st.columns(3)
 mes = df_loc.index.value_counts().index
-meses = st.selectbox('Mês', mes)
+meses = col1.selectbox('Mês', mes)
 df_mes = df_loc[df_loc.index == meses]
 weeks = df_mes['Dia'].value_counts().index
 week = col1.selectbox('Dia', weeks)
