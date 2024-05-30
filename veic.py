@@ -108,7 +108,6 @@ col3.dataframe(df_bairro)
 col4.bar_chart(df_bairro, y=["count"], color=["#737373"])
 col4.divider()
 col6.metric('**Total de crimes**:', df_crime['Crime'].value_counts())
-col6.metric('**Total de crimes**:', df_crime['Crime'].value_counts())               
 
 st.divider()
 
