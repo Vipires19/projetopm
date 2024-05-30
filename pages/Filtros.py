@@ -16,9 +16,12 @@ loc = st.sidebar.selectbox('Localizado?', locs)
 df_loc = df_tipo[df_tipo['Localizado?'] == loc]
 
 col1,col2,col3 = st.columns(3)
-weeks = df_loc['Dia'].value_counts().index
+mes = df_loc.index.value_counts().index
+meses = st.selectbox('Mês', mes)
+df_mes = df_loc[df_loc.index == meses]
+weeks = df_mes['Dia'].value_counts().index
 week = col1.selectbox('Dia', weeks)
-df_week = df_loc[df_loc['Dia'] == week]
+df_week = df_mes[df_mes['Dia'] == week]
 
 #periodos = df_week['Período'].value_counts().index
 #periodo = col2.selectbox('Período', periodos)
