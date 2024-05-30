@@ -19,10 +19,6 @@ col1,col2,col3 = st.columns(3)
 weeks = df_loc['Dia'].value_counts().index
 week = col1.selectbox('Dia', weeks)
 df_week = df_loc[df_loc['Dia'] == week]
-
-mont = df_week[df_week.index()].value_counts().index
-mots = col1.selectbox('Mês', mont)
-
 periodos = df_week['Período'].value_counts().index
 periodo = col2.selectbox('Período', periodos)
 df_peri = df_week[df_week['Período'] == periodo]
