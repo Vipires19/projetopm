@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import webbrowser
 
 df = st.session_state['data']
 
@@ -23,7 +22,8 @@ mes = df['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
 df_mes = df[df['mês'] == meses]
 tipos = df_mes['Tipo do veículo'].value_counts().index
-tipo = col1.selectbox('Tipo do veículo', tipos)
+tipo = col2.selectbox('Tipo do veículo', tipos)
 df_tipo = df_mes[df_mes['Tipo do veículo'] == tipo]
+df_tipo
 
 
