@@ -9,7 +9,7 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
 
 df = df[colunas]
 
-st.title('**Roubo de Veículos 3° BC**')
+st.title('**Furto de Veículos 3° BC**')
 
 colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endereço', 'Bairro', 'Subsetor', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca', 'Modelo', 'Placa', 'Ano',
            'Vítima', 'Flagrante?',  'Localizado?']
