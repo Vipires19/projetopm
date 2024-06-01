@@ -36,6 +36,8 @@ car_num = placa[0].split(placa[0][2])[1]
 car_let = placa[0].split(placa[0][3])[0]
 placa = car_let + '-' + car_num
 col2.markdown(f'**Placas**: {placa}')
+year = list(df_veic['Ano'])[0]
+col1.markdown(f'**Ano**: {year}')
 mar = list(df_veic['Marca'])[0]
 col1.markdown(f'**Marca**: {mar}')
 #tipe = list(df_ocr['Tipo do veículo'])
@@ -46,18 +48,17 @@ bairro = list(df_veic["Bairro"])[0]
 col2.markdown(f'**Bairro**: {bairro}')
 sector = list(df_veic['Subsetor'])[0].split('.')[-1]
 col2.markdown(f'**Setor**: {sector}')
-#car = list(df_ocr['Modelo'])
-#mar = list(df_ocr['Marca'])
-#tipe = list(df_ocr['Tipo do veículo'])
-#placa = list(df_ocr['Placa'])
-#car_num = placa[0].split(placa[0][2])[1]
-#car_let = placa[0].split(placa[0][3])[0]
-#placa = car_let + '-' + car_num
-#year = list(df_ocr['Ano'])
-#vit = list(df_ocr['Vítima'])
-#locd = list(df_ocr['Localizado?'])
-#recu = list(df_ocr['Bairro da recuperação'])
-#data_rec = list(df_ocr['Data da Recuperação'])[0].date()
+
+vit = list(df_veic['Vítima'])[0]
+col1.markdown(f'**Vítima**: {vit}')
+
+locd = list(df_veic['Localizado?'])[0]
+col1.markdown(f'**Localizado?**: {locd}')
+data_rec = list(df_veic['Data da Recuperação'])[0].date()
+col1.markdown('f**Data da localização**: {data_rec}')
+recu = list(df_veic['Bairro da recuperação'])
+col2.markdown('f**Bairro da localização**: {recu}')
+
 #fla = list(df_ocr['Flagrante?'])[0]
 #ladrao = list(df_ocr['N° de agressores'])[0]
 #se = list(df_ocr['Sexo dos agressores'])[0]
