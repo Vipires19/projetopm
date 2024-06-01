@@ -28,6 +28,8 @@ veic = df_tipo['Placa'].value_counts().index
 veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
 
+st.divider()
+st.header('**Veículo**')
 col1,col2 = st.columns(2)
 car = list(df_veic['Modelo'])[0]
 col1.markdown(f'**Veículo levado**: {car}')
@@ -48,47 +50,28 @@ bairro = list(df_veic["Bairro"])[0]
 col2.markdown(f'**Bairro**: {bairro}')
 sector = list(df_veic['Subsetor'])[0].split('.')[-1]
 col2.markdown(f'**Setor**: {sector}')
-
+fla = list(df_veic['Flagrante?'])[0]
+col1.markdown(f'**Flagrante?**: {fla}')
+st.header('**Ocorrência**')
 vit = list(df_veic['Vítima'])[0]
 col1.markdown(f'**Vítima**: {vit}')
-
+ladrao = list(df_veic['N° de agressores'])[0]
+col1.markdown(f'**N° de agressores**: {ladrao}')
+se = list(df_veic['Sexo dos agressores'])[0]
+col1.markdown(f'**Sexo dos agressores**: {se}')
+clad = list(df_veic['Cor'])[0]
+col1.markdown(f'**Cor**: {clad}')
+gun = list(df_veic['Arma utilizada'])[0]
+col1.markdown(f'**Arma utilizada**: {gun}')
+trans = list(df_veic['Transporte utilizado'])[0]
+col1.markdown(f'**Transporte utilizado**: {trans}')
+cvu = list(df_veic['Cor do veículo utilizado'])[0]
+col1.markdown(f'**Cor do veículo utilizado**: {cvu}')
+st.header('**Localização:**')
 locd = list(df_veic['Localizado?'])[0]
 col1.markdown(f'**Localizado?**: {locd}')
 data_rec = list(df_veic['Data da Recuperação'])[0].date()
 col1.markdown(f'**Data da localização**: {data_rec}')
 recu = list(df_veic['Bairro da recuperação'])[0]
 col2.markdown(f'**Bairro da localização**: {recu}')
-
-#fla = list(df_ocr['Flagrante?'])[0]
-#ladrao = list(df_ocr['N° de agressores'])[0]
-#se = list(df_ocr['Sexo dos agressores'])[0]
-#clad = list(df_ocr['Cor'])[0]
-#gun = list(df_ocr['Arma utilizada'])[0]
-#trans = list(df_ocr['Transporte utilizado'])[0]
-#cvu = list(df_ocr['Cor do veículo utilizado'])[0]
-#dataocr = list(df_ocr['Dia'])[0]
-#mesocr = list(df_ocr.index.value_counts().index)[0]
-
-#st.markdown(f'**Dia do fato**: {dataocr}')
-#st.markdown(f'**Mes**: {mesocr}')
-#st.header('**Veículo levado**:')
-#col1,col2,col3 = st.columns(3)
-#col1.markdown(f'**Modelo**: {car[0].split(" ")[1]}')
-#col1.markdown(f'**Marca**: {mar[0]}')
-#col1.markdown(f'**Placa**: {placa}')
-#col2.markdown(f'**Tipo**: {tipe[0]}')
-#col2.markdown(f'**Ano do Veículo**: {year[0]}')
-#col2.markdown(f'**Vítima**: {vit[0]}')
-#col3.markdown(f'**Localizado?**: {locd[0]}')
-#col3.markdown(f'**Bairro onde foi localizado**: {recu[0]}')
-#col3.markdown(f'**Data em que foi localizado**: {data_rec}')
-#col2.divider()
-#col2.markdown(f'**Flagrante?**: {fla}')
-#col2.markdown(f'**N° de agressores**: {ladrao}')
-#col2.markdown(f'**Sexo dos agressores**: {se}')
-#col2.markdown(f'**Cor**: {clad}')
-#col3.divider()
-#col3.markdown(f'**Arma utilizada**: {gun}')
-#col3.markdown(f'**Transporte utilizado**: {trans}')
-
 
