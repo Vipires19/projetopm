@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 if 'data' not in st.session_state:
-    df = pd.read_excel(r'C:\Users\user\Downloads\Data science\Python\projeto_chatbot\projeto_pm\veic_produto.xlsx')
+    df = pd.read_excel(r'veic_produto.xlsx')
     colunas = {'dia':'Dia', 'semana':'Dia da semana', 'hora':'Hora', 'periodo':'Período','mes':'Mês', 'crime':'Crime','cia':'CIA PM', 'endereco':'Endereço',
        'bairro':'Bairro', 'subsetor':'Subsetor', 'cidade':'Cidade', 'data_recuperado':'Data da Recuperação', 'bairro_recuperado':'Bairro da recuperação',
        'ambiente':'Ambiente', 'tipo':'Tipo do veículo', 'marca':'Marca', 'modelo':'Modelo', 'placa':'Placa', 'ano':'Ano','flagrante':'Flagrante?',
