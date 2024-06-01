@@ -31,10 +31,10 @@ df_veic = df_tipo[df_tipo['Placa'] == veics]
 col1,col2 = st.columns(2)
 ocr = list(df_veic['Endereço'])[0]
 ocrs = col1.markdown(f'**Endereço da ocorrência**: {ocr}')
-#bairro = df_veic['Bairro'].value_counts().index
-col2.markdown(f'**Bairro**: {list(df_veic["Bairro"])[0]}')
-#sector = list(df_ocr['Subsetor'])[0].split('.')[-1]
-#st.markdown(f'**Setor**: {sector}')
+bairro = list(df_veic["Bairro"])[0]
+col2.markdown(f'**Bairro**: {bairro}')
+sector = list(df_ocr['Subsetor'])[0].split('.')[-1]
+col3.markdown(f'**Setor**: {sector}')
 #car = list(df_ocr['Modelo'])
 #mar = list(df_ocr['Marca'])
 #tipe = list(df_ocr['Tipo do veículo'])
