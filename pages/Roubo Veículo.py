@@ -57,7 +57,7 @@ col1.markdown(f'**Localizado?**: {locd}')
 data_rec = list(df_veic['Data da Recuperação'])[0].date()
 col1.markdown('f**Data da localização**: {data_rec}')
 recu = list(df_veic['Bairro da recuperação'])
-col2.markdown('f**Bairro da localização**: {recu}')
+col2.markdown(f'**Bairro da localização**: {recu}')
 
 #fla = list(df_ocr['Flagrante?'])[0]
 #ladrao = list(df_ocr['N° de agressores'])[0]
