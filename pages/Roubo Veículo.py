@@ -29,7 +29,7 @@ veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
 
 col1,col2 = st.columns(2)
-ocr = df_veic['Endereço']
+ocr = list(df_veic['Endereço'])[0]
 ocrs = col1.markdown(f'**Endereço da ocorrência**: {ocr}')
 #bairro = df_veic['Bairro'].value_counts().index
 col2.markdown(f'**Bairro**: {list(df_veic["Bairro"])[0]}')
