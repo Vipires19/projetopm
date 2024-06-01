@@ -9,4 +9,7 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
 
 df = df[colunas]
 
-st.tittle('**Roubo de Veículos 3° BC')
+st.title('**Roubo de Veículos 3° BC')
+
+df_rv = df[df['Crime'] == 'Roubo']
+df_rv
