@@ -3,4 +3,3 @@ streamlit
 openpyxl
 seaborn
 numpy
-matplotlib.pyplot
