@@ -71,6 +71,6 @@ col1, col2,col3 = st.columns(3)
 col1.markdown('**Endereço com mais ocorrências**:')
 col1.bar_chart(df_setor['Endereço'].value_counts())
 
-col2.markdown(f'**Período com mais ocorrências no setor {df_setor["Período"].value_counts().index[0]}**:')
+col2.markdown(f'**Período com mais ocorrências no setor**: {df_setor["Período"].value_counts().index[0]}')
 col2.bar_chart(df_setor['Período'].value_counts())
 
