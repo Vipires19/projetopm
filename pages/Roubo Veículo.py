@@ -29,9 +29,15 @@ veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
 
 col1,col2 = st.columns(2)
-car = list(df_veic['Modelo'])
+car = list(df_veic['Modelo'])[0]
 col1.markdown(f'**Veículo levado**: {car}')
-#mar = list(df_ocr['Marca'])
+placa = list(df_veic['Placa'])
+car_num = placa[0].split(placa[0][2])[1]
+car_let = placa[0].split(placa[0][3])[0]
+placa = car_let + '-' + car_num
+col2.markdown(f'**Placas**: {placa}')
+mar = list(df_ocr['Marca'])[0]
+col1.markdown(f'**Marca**: {'mar}')
 #tipe = list(df_ocr['Tipo do veículo'])
 #placa = list(df_ocr['Placa'])
 ocr = list(df_veic['Endereço'])[0]
