@@ -21,7 +21,7 @@ df_rv
 col1,col2,col3 = st.columns(3)
 mes = df['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
-df_mes = df[df_mes['mês'] == meses]
+df_mes = df[df['mês'] == meses]
 tipos = df_mes['Tipo do veículo'].value_counts().index
 tipo = col1.selectbox('Tipo do veículo', tipos)
 df_tipo = df_mes[df_mes['Tipo do veículo'] == tipo]
