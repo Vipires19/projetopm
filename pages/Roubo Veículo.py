@@ -29,12 +29,17 @@ veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
 
 col1,col2 = st.columns(2)
+car = list(df_veic['Modelo'])
+col1.markdown(f'**Veículo levado**: {car}
+#mar = list(df_ocr['Marca'])
+#tipe = list(df_ocr['Tipo do veículo'])
+#placa = list(df_ocr['Placa'])
 ocr = list(df_veic['Endereço'])[0]
-ocrs = col1.markdown(f'**Endereço da ocorrência**: {ocr}')
+col1.markdown(f'**Endereço da ocorrência**: {ocr}')
 bairro = list(df_veic["Bairro"])[0]
 col2.markdown(f'**Bairro**: {bairro}')
 sector = list(df_veic['Subsetor'])[0].split('.')[-1]
-col3.markdown(f'**Setor**: {sector}')
+col2.markdown(f'**Setor**: {sector}')
 #car = list(df_ocr['Modelo'])
 #mar = list(df_ocr['Marca'])
 #tipe = list(df_ocr['Tipo do veículo'])
