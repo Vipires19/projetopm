@@ -75,6 +75,10 @@ col1.metric('**Furto Veículo Não localizado**:', nloc_furto)
 col2.metric('**Roubo de Veículos**:', soma_roubo)
 col2.metric('**Roubo Veículo Localizado**:', loc_roubo)
 col2.metric('**Roubo Veículo não localizado**:', nloc_roubo)
+btn = col2.button('Mais')
+if btn:
+    webbrowser.open_new_tab('https://criminalrpft.streamlit.app/Roubo_Ve%C3%ADculo')
+
 
 st.divider()
 st.header('**Estatísticas Mensais**:')
