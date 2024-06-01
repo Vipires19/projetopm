@@ -36,7 +36,7 @@ car_num = placa[0].split(placa[0][2])[1]
 car_let = placa[0].split(placa[0][3])[0]
 placa = car_let + '-' + car_num
 col2.markdown(f'**Placas**: {placa}')
-mar = list(df_ocr['Marca'])[0]
+mar = list(df_veic['Marca'])[0]
 col1.markdown(f'**Marca**: {mar}')
 #tipe = list(df_ocr['Tipo do veículo'])
 #placa = list(df_ocr['Placa'])
