@@ -14,7 +14,7 @@ df = df[colunas]
 
 col1, col2 = st.columns(2)
 col1.title('Análise Geocriminal 3° BC')
-col2.image(r'C:\Users\user\Downloads\Data science\Python\projeto_chatbot\projeto_pm\3BC.png')
+col2.image(r'3BC.png')
 st.header('**Estatísticas anuais**:')
 on = st.toggle("Mostrar Dados")
 if on:
