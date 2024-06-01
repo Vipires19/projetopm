@@ -15,3 +15,4 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
            'Vítima', 'Flagrante?',  'Localizado?']
 df_rv = df[df['Crime'] == 'Roubo']
 df_rv = df_rv[colunas]
+df_rv
