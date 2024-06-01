@@ -38,6 +38,11 @@ if 'data' not in st.session_state:
 
     st.session_state['data'] = df
 
+st.set_page_config(
+    layout =  'wide',
+    page_title = 'Análise Geocriminal 3° BC',
+)
+
 df = st.session_state['data']
 
 colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endereço', 'Bairro', 'Subsetor', 'Cidade', 'Crime', 'Tipo do veículo', 'Marca', 'Modelo', 'Placa', 'Ano',
