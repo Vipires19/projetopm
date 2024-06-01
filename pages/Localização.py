@@ -11,19 +11,21 @@ df = df[colunas]
 
 st.title('**Localização de caráter geral**')
 
-colunas = ['CIA PM', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Modelo', 'Placa', 'Ano',
+colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Modelo', 'Placa', 'Ano',
            'Flagrante?',  'Localizado?']
 df_loc = df[df['Localizado?'] == 'Sim']
 df_loc = df_loc[colunas]
 df_loc
 
 col1,col2,col3 = st.columns(3)
-mes = df['mês'].value_counts().index
+mes = df_loc['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
-df_mes = df[df['mês'] == meses]
+df_mes = df_loc[df_loc['mês'] == meses]
+
 tipo = df_mes['Tipo do veículo'].value_counts().index
 tipos = col2.selectbox('Tipo do veículo', tipo)
 df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
+
 veic = df_tipo['Placa'].value_counts().index
 veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
@@ -42,15 +44,6 @@ year = list(df_veic['Ano'])[0]
 col3.markdown(f'**Ano**: {year}')
 mar = list(df_veic['Marca'])[0]
 col4.markdown(f'**Marca**: {mar}')
-#tipe = list(df_ocr['Tipo do veículo'])
-#placa = list(df_ocr['Placa'])
-ocr = list(df_veic['Endereço'])[0]
-col1.markdown(f'**Endereço da ocorrência**: {ocr}')
-bairro = list(df_veic["Bairro"])[0]
-col2.markdown(f'**Bairro**: {bairro}')
-sector = list(df_veic['Subsetor'])[0].split('.')[-1]
-col3.markdown(f'**Setor**: {sector}')
-fla = list(df_veic['Flagrante?'])[0]
 col4.markdown(f'**Flagrante?**: {fla}')
 
 st.header('**Ocorrência**')
