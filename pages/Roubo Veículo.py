@@ -30,7 +30,7 @@ df_veic = df_tipo[df_tipo['Placa'] == veics]
 
 col1,col2 = st.columns(2)
 car = list(df_veic['Modelo'])
-col1.markdown(f'**Veículo levado**: {car}
+col1.markdown(f'**Veículo levado**: {car}')
 #mar = list(df_ocr['Marca'])
 #tipe = list(df_ocr['Tipo do veículo'])
 #placa = list(df_ocr['Placa'])
