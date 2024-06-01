@@ -11,7 +11,7 @@ df = df[colunas]
 
 st.title('**Localização de caráter geral**')
 
-colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Modelo', 'Placa', 'Ano',
+colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
            'Flagrante?',  'Localizado?']
 df_loc = df[df['Localizado?'] == 'Sim']
 df_loc = df_loc[colunas]
