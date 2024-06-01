@@ -22,8 +22,8 @@ mes = df['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
 df_mes = df[df['mês'] == meses]
 tipo = df_mes['Tipo do veículo'].value_counts().index
-tipos = col2.selectbox('Tipo do veículo', tipos)
-df_tipo = df_mes[df_mes['Tipo do veículo'] == tipo]
+tipos = col2.selectbox('Tipo do veículo', tipo)
+df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
 veic = df_tipo['Placa'].value_counts().index
 veics = col3.selectbox('Veículo', veic)
 df_veic = df_tipo[df_tipo['Placa'] == veics]
