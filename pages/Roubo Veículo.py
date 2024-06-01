@@ -33,7 +33,7 @@ ocr = list(df_veic['Endereço'])[0]
 ocrs = col1.markdown(f'**Endereço da ocorrência**: {ocr}')
 bairro = list(df_veic["Bairro"])[0]
 col2.markdown(f'**Bairro**: {bairro}')
-sector = list(df_ocr['Subsetor'])[0].split('.')[-1]
+sector = list(df_veic['Subsetor'])[0].split('.')[-1]
 col3.markdown(f'**Setor**: {sector}')
 #car = list(df_ocr['Modelo'])
 #mar = list(df_ocr['Marca'])
