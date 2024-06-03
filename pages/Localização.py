@@ -11,7 +11,7 @@ df = df[colunas]
 
 st.title('**Localização de caráter geral**')
 
-colunas = ['CIA PM', 'mês', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca','Modelo', 'Placa', 'Ano',  'Localizado?']
+colunas = ['CIA PM', 'mês', 'Bairro', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca','Modelo', 'Placa', 'Ano',  'Localizado?']
 df_loc = df[df['Localizado?'] == 'Sim']
 df_loc = df_loc[colunas]
 on = st.toggle("Mostrar Dados")
@@ -30,9 +30,9 @@ on = st.toggle('Dados')
 if on:
     st.dataframe(df_cia)
 
-veic = df_tipo['Placa'].value_counts().index
+veic = df_cia['Placa'].value_counts().index
 veics = col3.selectbox('Veículo', veic)
-df_veic = df_tipo[df_tipo['Placa'] == veics]
+df_veic = df_cia[df_cia['Placa'] == veics]
 
 st.divider()
 st.header('**Veículo**')
@@ -52,7 +52,6 @@ fla = list(df_veic['Flagrante?'])[0]
 col4.markdown(f'**Flagrante?**: {fla}')
 vit = list(df_veic['Vítima'])[0]
 col1.markdown(f'**Vítima**: {vit}')
-
 
 st.header('**Localização:**')
 col1,col2,col3 = st.columns(3)
