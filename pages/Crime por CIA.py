@@ -61,15 +61,8 @@ st.divider()
 
 col1,col2, col3 = st.columns(3)
 col1.markdown(f'**Período com mais ocorrências**: {df_mes["Período"].value_counts().index[0]}')
-col1.bar_chart(df_mes['Período'].value_counts())
-
 col2.markdown('**Horário com mais ocorrências**:')
-col2.bar_chart(df_mes['Hora'].value_counts())
-
 col3.markdown(f'**Setor com mais ocorrências**: {df_mes["Subsetor"].value_counts().index[0]}')
-col3.bar_chart(df_mes['Subsetor'].value_counts())
-
-
 
 st.divider()
 st.header('Estatísticas:')
@@ -120,7 +113,7 @@ obj = df_crime['Objeto'].value_counts().index[0]
 col2.metric('**Objetos**:', obj)
 tipo = df_crime['Tipo do veículo'].value_counts().index[0]
 col3.metric('**Tipo de veículo mais levado**:', tipo)
-fla = df_crime['Flagrante?'].value_counts().loc['Sim']
+fla = df_crime['Flagrante?'].value_counts()['Sim']
 col4.metric('**Flagrantes**:', fla)
 oco = df_crime['Crime'].value_counts().iloc[0]
 col1.metric('**Número ocorrências**:', oco)
