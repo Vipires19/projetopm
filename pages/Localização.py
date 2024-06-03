@@ -44,8 +44,7 @@ df_loc_set = df_loc_set[colunas]
 bairro = df_cia['Bairro'].value_counts().index
 bairros = st.selectbox('Bairro', bairro)
 df_bairro = df_cia[df_cia['Bairro'] == bairros]
-df_bairro[['mês', 'Dia', 'Hora', 'Endereço', 'Bairro', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
-           'Flagrante?']]
+df_bairro
 #tipo = df_mes['Tipo do veículo'].value_counts().index
 #tipos = col2.selectbox('Tipo do veículo', tipo)
 #df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
