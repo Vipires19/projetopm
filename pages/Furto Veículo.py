@@ -13,17 +13,17 @@ st.title('**Furto de Veículos 3° BC**')
 
 colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endereço', 'Bairro', 'Subsetor', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca', 'Modelo', 'Placa', 'Ano',
            'Vítima', 'Flagrante?',  'Localizado?']
-df_rv = df[df['Crime'] == 'Furto']
-df_rv = df_rv[colunas]
+df_fv = df[df['Crime'] == 'Furto Veic']
+df_fv = df_fv[colunas]
 on = st.toggle("Mostrar Dados")
 if on:
     st.dataframe(df_rv)
 
 
 col1,col2,col3 = st.columns(3)
-mes = df['mês'].value_counts().index
+mes = df_fv['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
-df_mes = df[df['mês'] == meses]
+df_mes = df_fv[df_fv['mês'] == meses]
 tipo = df_mes['Tipo do veículo'].value_counts().index
 tipos = col2.selectbox('Tipo do veículo', tipo)
 df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
