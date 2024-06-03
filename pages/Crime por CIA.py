@@ -58,15 +58,9 @@ col2.metric('**Roubo Veículo não localizado**:', nloc_roubo)
 col3.metric('**Roubo Outros**:', soma_roubo)
 
 st.divider()
-
-col1,col2, col3 = st.columns(3)
-col1.markdown(f'**Período com mais ocorrências**: {df_mes["Período"].value_counts().index[0]}')
-col2.markdown('**Horário com mais ocorrências**:')
-col3.markdown(f'**Setor com mais ocorrências**: {df_mes["Subsetor"].value_counts().index[0]}')
-
-st.divider()
 st.header('Estatísticas:')
 col1,col2,col3 = st.columns(3)
+col1.markdown(f'**Período com mais ocorrências**: {df_mes["Período"].value_counts().index[0]}')
 on = col1.toggle('Detalhes Período')
 if on:
     peri = df_mes['Período'].value_counts().index
@@ -78,7 +72,8 @@ if on:
     col1.markdown(f'**Furto Veíc**: {fv}')
     col1.markdown(f'**Roubo Veíc**: {rv}')
     col1.markdown(f'**Roubo outros**: {r}')
-
+           
+col2.markdown(f'**Setor com mais ocorrências**: {df_mes["Subsetor"].value_counts().index[0]}')
 on = col2.toggle('Detalhes Setores')
 if on:
     set = df_mes['Subsetor'].value_counts().index
