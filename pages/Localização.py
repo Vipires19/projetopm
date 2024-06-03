@@ -42,7 +42,7 @@ df_loc_set = df_loc_set[colunas]
 #cias = col1.selectbox('Cia', cia)
 #df_cia = df_loc_set[df_loc_set['CIA PM'] == cias]
 bairro = df_cia['Bairro'].value_counts().index
-bairros = col2.selectbox('Bairro', bairro)
+bairros = st.selectbox('Bairro', bairro)
 df_bairro = df_cia[df_cia['Bairro'] == bairros]
 df_bairro[['mês', 'Dia', 'Hora', 'Endereço', 'Bairro', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
            'Flagrante?']]
