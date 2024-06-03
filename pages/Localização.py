@@ -11,8 +11,7 @@ df = df[colunas]
 
 st.title('**Localização de caráter geral**')
 
-colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Vítima', 'Tipo do veículo', 'Marca','Modelo', 'Placa', 'Ano',
-           'Flagrante?',  'Localizado?']
+colunas = ['CIA PM', 'mês', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca','Modelo', 'Placa', 'Ano',  'Localizado?']
 df_loc = df[df['Localizado?'] == 'Sim']
 df_loc = df_loc[colunas]
 on = st.toggle("Mostrar Dados")
@@ -24,9 +23,12 @@ mes = df_loc['mês'].value_counts().index
 meses = col1.selectbox('Mês', mes)
 df_mes = df_loc[df_loc['mês'] == meses]
 
-tipo = df_mes['Tipo do veículo'].value_counts().index
-tipos = col2.selectbox('Tipo do veículo', tipo)
-df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
+cia = df_mes['CIA PM'].value_counts().index
+cias = col2.selectbox('Cia', cia)
+df_cia = df_mes[df_mes['CIA PM'] == cias]
+on = st.toggle('Dados')
+if on:
+    st.dataframe(df_cia)
 
 veic = df_tipo['Placa'].value_counts().index
 veics = col3.selectbox('Veículo', veic)
