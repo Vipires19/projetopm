@@ -8,14 +8,16 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
            'Cor do veículo utilizado']
 
 df = df[colunas]
+df_rv = df[df['Crime'] == 'Roubo Veic']
 
 st.title('**Roubo de Veículos 3° BC**')
 
 colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endereço', 'Bairro', 'Subsetor', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca', 'Modelo', 'Placa', 'Ano',
            'Vítima', 'Flagrante?',  'Localizado?']
-df_rv = df[df['Crime'] == 'Roubo']
-df_rv = df_rv[colunas]
-df_rv
+df_rv1 = df_rv[colunas]
+on = st.toggle("Mostrar Dados")
+if on:
+    st.dataframe(df_rv1)
 
 col1,col2,col3 = st.columns(3)
 mes = df['mês'].value_counts().index
@@ -42,8 +44,6 @@ year = list(df_veic['Ano'])[0]
 col3.markdown(f'**Ano**: {year}')
 mar = list(df_veic['Marca'])[0]
 col4.markdown(f'**Marca**: {mar}')
-#tipe = list(df_ocr['Tipo do veículo'])
-#placa = list(df_ocr['Placa'])
 ocr = list(df_veic['Endereço'])[0]
 col1.markdown(f'**Endereço da ocorrência**: {ocr}')
 bairro = list(df_veic["Bairro"])[0]
@@ -62,7 +62,7 @@ col2.markdown(f'**N° de agressores**: {ladrao}')
 se = list(df_veic['Sexo dos agressores'])[0]
 col3.markdown(f'**Sexo dos agressores**: {se}')
 clad = list(df_veic['Cor'])[0]
-col1.markdown(f'**Cor**: {clad}')
+col1.markdown(f'**Cor do agressores**: {clad}')
 gun = list(df_veic['Arma utilizada'])[0]
 col2.markdown(f'**Arma utilizada**: {gun}')
 trans = list(df_veic['Transporte utilizado'])[0]
@@ -78,4 +78,3 @@ data_rec = list(df_veic['Data da Recuperação'])[0].date()
 col2.markdown(f'**Data da localização**: {data_rec}')
 recu = list(df_veic['Bairro da recuperação'])[0]
 col3.markdown(f'**Bairro da localização**: {recu}')
-

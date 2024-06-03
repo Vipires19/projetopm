@@ -11,11 +11,13 @@ df = df[colunas]
 
 st.title('**Localização de caráter geral**')
 
-colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
+colunas = ['CIA PM', 'mês', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Vítima', 'Tipo do veículo', 'Marca','Modelo', 'Placa', 'Ano',
            'Flagrante?',  'Localizado?']
 df_loc = df[df['Localizado?'] == 'Sim']
 df_loc = df_loc[colunas]
-df_loc
+on = st.toggle("Mostrar Dados")
+if on:
+    st.dataframe(df_loc)
 
 col1,col2,col3 = st.columns(3)
 mes = df_loc['mês'].value_counts().index
@@ -44,24 +46,11 @@ year = list(df_veic['Ano'])[0]
 col3.markdown(f'**Ano**: {year}')
 mar = list(df_veic['Marca'])[0]
 col4.markdown(f'**Marca**: {mar}')
+fla = list(df_veic['Flagrante?'])[0]
 col4.markdown(f'**Flagrante?**: {fla}')
-
-st.header('**Ocorrência**')
-col1,col2,col3 = st.columns(3)
 vit = list(df_veic['Vítima'])[0]
 col1.markdown(f'**Vítima**: {vit}')
-ladrao = list(df_veic['N° de agressores'])[0]
-col2.markdown(f'**N° de agressores**: {ladrao}')
-se = list(df_veic['Sexo dos agressores'])[0]
-col3.markdown(f'**Sexo dos agressores**: {se}')
-clad = list(df_veic['Cor'])[0]
-col1.markdown(f'**Cor**: {clad}')
-gun = list(df_veic['Arma utilizada'])[0]
-col2.markdown(f'**Arma utilizada**: {gun}')
-trans = list(df_veic['Transporte utilizado'])[0]
-col3.markdown(f'**Transporte utilizado**: {trans}')
-cvu = list(df_veic['Cor do veículo utilizado'])[0]
-col1.markdown(f'**Cor do veículo utilizado**: {cvu}')
+
 
 st.header('**Localização:**')
 col1,col2,col3 = st.columns(3)
@@ -71,3 +60,27 @@ data_rec = list(df_veic['Data da Recuperação'])[0].date()
 col2.markdown(f'**Data da localização**: {data_rec}')
 recu = list(df_veic['Bairro da recuperação'])[0]
 col3.markdown(f'**Bairro da localização**: {recu}')
+
+st.divider()
+st.header('**Bairros**')
+colunas = ['CIA PM', 'mês', 'Dia', 'Hora', 'Endereço', 'Bairro', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
+           'Flagrante?',  'Localizado?']
+df_loc_set = df[df['Localizado?'] == 'Sim']
+df_loc_set = df_loc_set[colunas]
+
+col1,col2,col3 = st.columns(3)
+cia = df_loc_set['CIA PM'].value_counts().index
+cias = col1.selectbox('Cia', cia)
+df_cia = df_loc_set[df_loc_set['CIA PM'] == cias]
+bairro = df_cia['Bairro'].value_counts().index
+bairros = col2.selectbox('Bairro', bairro)
+df_bairro = df_cia[df_cia['Bairro'] == bairros]
+df_bairro[['mês', 'Dia', 'Hora', 'Endereço', 'Bairro', 'Data da Recuperação', 'Bairro da recuperação', 'Ambiente', 'Crime', 'Cidade', 'Tipo do veículo', 'Modelo', 'Placa', 'Ano',
+           'Flagrante?']]
+#tipo = df_mes['Tipo do veículo'].value_counts().index
+#tipos = col2.selectbox('Tipo do veículo', tipo)
+#df_tipo = df_mes[df_mes['Tipo do veículo'] == tipos]
+
+#veic = df_tipo['Placa'].value_counts().index
+#veics = col3.selectbox('Veículo', veic)
+#df_veic = df_tipo[df_tipo['Placa'] == veics]

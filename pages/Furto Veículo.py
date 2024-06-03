@@ -15,7 +15,10 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
            'Vítima', 'Flagrante?',  'Localizado?']
 df_rv = df[df['Crime'] == 'Furto']
 df_rv = df_rv[colunas]
-df_rv
+on = st.toggle("Mostrar Dados")
+if on:
+    st.dataframe(df_rv)
+
 
 col1,col2,col3 = st.columns(3)
 mes = df['mês'].value_counts().index
@@ -42,8 +45,6 @@ year = list(df_veic['Ano'])[0]
 col3.markdown(f'**Ano**: {year}')
 mar = list(df_veic['Marca'])[0]
 col4.markdown(f'**Marca**: {mar}')
-#tipe = list(df_ocr['Tipo do veículo'])
-#placa = list(df_ocr['Placa'])
 ocr = list(df_veic['Endereço'])[0]
 col1.markdown(f'**Endereço da ocorrência**: {ocr}')
 bairro = list(df_veic["Bairro"])[0]
