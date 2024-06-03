@@ -8,16 +8,16 @@ colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endere
            'Cor do veículo utilizado']
 
 df = df[colunas]
+df_fv = df[df['Crime'] == 'Furto Veic']
 
 st.title('**Furto de Veículos 3° BC**')
 
 colunas = ['mês', 'Dia', 'Dia da semana', 'Hora', 'Período', 'CIA PM', 'Endereço', 'Bairro', 'Subsetor', 'Crime', 'Cidade', 'Tipo do veículo', 'Marca', 'Modelo', 'Placa', 'Ano',
            'Vítima', 'Flagrante?',  'Localizado?']
-df_fv = df[df['Crime'] == 'Furto Veic']
-df_fv = df_fv[colunas]
+df_fv1 = df_fv[colunas]
 on = st.toggle("Mostrar Dados")
 if on:
-    st.dataframe(df_rv)
+    st.dataframe(df_fv1)
 
 
 col1,col2,col3 = st.columns(3)
