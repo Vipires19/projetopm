@@ -6,5 +6,4 @@ pymongo
 python-dotenv
 streamlit
 streamlit-authenticator == 0.3.3
-collections
 pytz
