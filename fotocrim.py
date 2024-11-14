@@ -1,9 +1,8 @@
 import streamlit as st
-from deepface import DeepFace
-import cv2
-import os
+#from deepface import DeepFace
+#import cv2
+#import os
 import streamlit_authenticator as stauth
-from pathlib import Path
 from pymongo import MongoClient
 import urllib
 import urllib.parse
@@ -11,7 +10,6 @@ from datetime import datetime
 import pandas as pd
 from collections import Counter
 import pytz
-
 
 st.set_page_config(
             layout =  'wide',
