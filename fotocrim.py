@@ -1,7 +1,7 @@
 import streamlit as st
-#from deepface import DeepFace
-#import cv2
-#import os
+from deepface import DeepFace
+import cv2
+import matplotlib as plt
 import streamlit_authenticator as stauth
 from pymongo import MongoClient
 import urllib
@@ -10,6 +10,7 @@ from datetime import datetime
 import pandas as pd
 from collections import Counter
 import pytz
+
 
 st.set_page_config(
             layout =  'wide',
@@ -84,63 +85,141 @@ def alimentando_banco():
        coll.insert_many([ladrao])
        coll2.insert_many([cadastro])
 
-def selecionando_individuo():
-    cidade = coll2.find({})
-    cidades = []
-    for item in cidade:
-        item.pop('_id', None)
-        cidades.append(item.get('Cidade'))
-
-    lista = Counter(cidades)
-    lista_cidades = []
-    for i in lista.keys():
-        lista_cidades.append(i)
-
-    city = st.selectbox('Cidade para pesquisa', lista_cidades)
-    
-    nome = coll2.find({'Cidade': city})
+def editar_dados():
+    nome = coll2.find({})
     nomes = []
     for item in nome:
         item.pop('_id', None)
         nomes.append(item.get('Nome'))
+    name = st.selectbox('Abordado', nomes)
 
-    name = st.selectbox('Nome para pesquisa', nomes)
+    campo = ['Nome', 'Documento', 'Mae', 'Pai', 'Vulgo', 'Nascimento', 'Enderaço', 'Bairro', 'Cidade']
+    campos = st.selectbox('Campo a ser editado', campo)
+    informacao = st.text_input('Nova entrada')
 
-    individuo = coll.find({'Nome' : name})
-    imagem = []
-    for item in individuo:
-        item.pop('_id', None)
-        imagem.append(item.get('Foto'))
+    atualiza_info = st.button('Editar informação')
+    if atualiza_info:
+        coll2.update_one({'Nome': name}, {'$set' : {campos : informacao.upper()}})
+        st.rerun()
 
-    individuo = coll2.find({'Nome' : name})
-    cadastro = []
-    for item in individuo:
-        item.pop('_id', None)
-        cadastro.append(item)
+def selecionando_individuo():
+    pesquisa = st.selectbox('Metodo de pesquisa', ['Cidade', 'Nome'])
+    st.divider()
+    if pesquisa == 'Cidade':
+        cidade = coll2.find({})
+        cidades = []
+        for item in cidade:
+            item.pop('_id', None)
+            cidades.append(item.get('Cidade'))
 
-    #individuo = coll.find({})
-    #individuos = []
-    #for item in individuo:
-    #    item.pop('_id', None)
-    #    individuos.append(item)
-    #imagem = individuos[0].get('Foto')
+        lista = Counter(cidades)
+        lista_cidades = []
+        for i in lista.keys():
+            lista_cidades.append(i)
 
-    #col1,col2,col3 = st.columns(3)
-    st.image(imagem,width= 300)
-    st.metric('Nome', cadastro[0].get('Nome'))
-    st.metric('Nome da mãe', cadastro[0].get('Mae'))
-    st.metric('Nome da pai', cadastro[0].get('Pai'))
-    st.metric('Vulgo', cadastro[0].get('Vulgo'))
-    st.metric('Data de nascimento', cadastro[0].get('Nascimento'))
-    st.markdown('Documentos')
-    documentos = [cadastro[0].get('Documentos')]
-    st.dataframe(pd.DataFrame(documentos, index = [len([cadastro[0].get('Documento')])]))
-    st.metric('Endereço', cadastro[0].get('Endereço'))
-    st.metric('Bairro', cadastro[0].get('Bairro'))
-    st.metric('Cidade', cadastro[0].get('Cidade'))
+        city = st.selectbox('Cidade para pesquisa', lista_cidades)
+        
+        nome = coll2.find({'Cidade': city})
+        nomes = []
+        for item in nome:
+            item.pop('_id', None)
+            nomes.append(item.get('Nome'))
 
-    log_abordagens(name)
+        name = st.selectbox('Nome para pesquisa', nomes)
 
+        individuo = coll.find({'Nome' : name})
+        imagem = []
+        for item in individuo:
+            item.pop('_id', None)
+            imagem.append(item.get('Foto'))
+
+        individuo = coll2.find({'Nome' : name})
+        cadastro = []
+        for item in individuo:
+            item.pop('_id', None)
+            cadastro.append(item)
+
+        #individuo = coll.find({})
+        #individuos = []
+        #for item in individuo:
+        #    item.pop('_id', None)
+        #    individuos.append(item)
+        #imagem = individuos[0].get('Foto')
+
+        #col1,col2,col3 = st.columns(3)
+        st.image(imagem,width= 300)
+        st.metric('Nome', cadastro[0].get('Nome'))
+        st.metric('Nome da mãe', cadastro[0].get('Mae'))
+        st.metric('Nome da pai', cadastro[0].get('Pai'))
+        st.metric('Vulgo', cadastro[0].get('Vulgo'))
+        st.metric('Data de nascimento', cadastro[0].get('Nascimento'))
+        st.markdown('Documentos')
+        documentos = [cadastro[0].get('Documentos')]
+        st.dataframe(pd.DataFrame(documentos, index = [len([cadastro[0].get('Documento')])]))
+        st.metric('Endereço', cadastro[0].get('Endereço'))
+        st.metric('Bairro', cadastro[0].get('Bairro'))
+        st.metric('Cidade', cadastro[0].get('Cidade'))
+
+        log_abordagens(name)
+
+    if pesquisa == 'Nome':
+
+        nome = coll2.find({})
+        nomes = []
+        for item in nome:
+            item.pop('_id', None)
+            nomes.append(item.get('Nome'))
+
+        lista = Counter(nomes)
+        lista_nomes = []
+        for i in lista.keys():
+            lista_nomes.append(i)
+
+        #city = st.selectbox('Nome para pesquisa', lista_nomes)
+        
+        #name = coll2.find({'Cidade': city})
+        #nomes = []
+        #for item in nome:
+        #    item.pop('_id', None)
+        #    nomes.append(item.get('Nome'))
+
+        name = st.selectbox('Nome para pesquisa', lista_nomes)
+
+        individuo = coll.find({'Nome' : name})
+        imagem = []
+        for item in individuo:
+            item.pop('_id', None)
+            imagem.append(item.get('Foto'))
+
+        individuo = coll2.find({'Nome' : name})
+        cadastro = []
+        for item in individuo:
+            item.pop('_id', None)
+            cadastro.append(item)
+
+        #individuo = coll.find({})
+        #individuos = []
+        #for item in individuo:
+        #    item.pop('_id', None)
+        #    individuos.append(item)
+        #imagem = individuos[0].get('Foto')
+
+        #col1,col2,col3 = st.columns(3)
+        st.image(imagem,width= 300)
+        st.metric('Nome', cadastro[0].get('Nome'))
+        st.metric('Nome da mãe', cadastro[0].get('Mae'))
+        st.metric('Nome da pai', cadastro[0].get('Pai'))
+        st.metric('Vulgo', cadastro[0].get('Vulgo'))
+        st.metric('Data de nascimento', cadastro[0].get('Nascimento'))
+        st.markdown('Documentos')
+        documentos = [cadastro[0].get('Documentos')]
+        st.dataframe(pd.DataFrame(documentos, index = [len([cadastro[0].get('Documento')])]))
+        st.metric('Endereço', cadastro[0].get('Endereço'))
+        st.metric('Bairro', cadastro[0].get('Bairro'))
+        st.metric('Cidade', cadastro[0].get('Cidade'))
+
+        log_abordagens(name)
+    
 def abordagens():
     fuso_horario_brasilia = pytz.timezone("America/Sao_Paulo")
     nome = coll2.find({})
@@ -169,7 +248,7 @@ def abordagens():
         if isinstance(data_utc, datetime):
             data_brasilia = data_utc.astimezone(fuso_horario_brasilia)
             tempo_agora = data_brasilia.strftime('%d/%m/%Y')
-        abordagem.update({'Data da abordagem' : tempo_agora})
+        abordagem.update({'Data abordagem' : tempo_agora})
         coll3.insert_many([abordagem])
     
 def log_abordagens(name):
@@ -197,7 +276,7 @@ def pagina_principal():
     btn = authenticator.logout()
     if btn:
         st.session_state["authentication_status"] == None
-        
+
     tab1,tab2,tab3,tab4 = st.tabs(['Pesquisa Individual', 'Banco de dados', 'Abordagens', 'Foto reconhecimento'])
     
     with tab1:
@@ -208,7 +287,11 @@ def pagina_principal():
     with tab2:
         st.title('Banco de dados')
         st.markdown('**Aqui é possível ter acesso as fotos dos indivíduos. Só serão admitidas fotos padronizadas para maior facilidade no manuseio do banco bem como na parte de reconhecimento facial**')
-        alimentando_banco()
+        tab1,tab2 = st.tabs(['Novo cadastro', 'Editar cadastro'])
+        with tab1:
+            alimentando_banco()
+        with tab2:
+            editar_dados()
 
     with tab3:
         st.title('Abordagens')
@@ -218,7 +301,7 @@ def pagina_principal():
     with tab4:
         st.title('Foto Reconhecimento')
         st.markdown('Local para realizar a comparação de imagens, por exemplo de uma filmagem de furto a residencia, com os suspeitos já cadastrados no nosso banco de dados')
-        st.header('Função em construção, em breve mais informações')        
+        st.header('Função em construção, em breve mais informações')     
 
 def main():
     if st.session_state["authentication_status"]:
