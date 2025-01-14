@@ -1,7 +1,4 @@
 import streamlit as st
-from deepface import DeepFace
-import cv2
-import matplotlib as plt
 import streamlit_authenticator as stauth
 from pymongo import MongoClient
 import urllib
