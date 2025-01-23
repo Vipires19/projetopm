@@ -245,7 +245,7 @@ def abordagens():
         if isinstance(data_utc, datetime):
             data_brasilia = data_utc.astimezone(fuso_horario_brasilia)
             tempo_agora = data_brasilia.strftime('%d/%m/%Y')
-        abordagem.update({'Data abordagem' : tempo_agora})
+        abordagem.update({'Data da abordagem' : tempo_agora})
         coll3.insert_many([abordagem])
     
 def log_abordagens(name):
