@@ -136,7 +136,7 @@ def editar_dados():
     campos = st.selectbox('Campo a ser editado', campo)
     if campos == 'Documentos':
         documento = ['RG', 'CPF', 'MATRICULA']
-        doc = st.selectbox('Documento', documento)
+        doc = st.selectbox('Tipo Doc', documento)
         informacao = st.text_input('Nova entrada')    
         atualiza_info = st.button('Editar informação')
         if atualiza_info:
