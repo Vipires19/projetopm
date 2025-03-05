@@ -132,7 +132,7 @@ def editar_dados():
         nomes.append(item.get('Nome'))
     name = st.selectbox('Abordado', nomes)
 
-    campo = ['Nome', 'Documento', 'Mae', 'Pai', 'Vulgo', 'Nascimento', 'Enderaço', 'Bairro', 'Cidade']
+    campo = ['Nome', 'Documento', 'Mae', 'Pai', 'Vulgo', 'Nascimento', 'Endereço', 'Bairro', 'Cidade']
     campos = st.selectbox('Campo a ser editado', campo)
     informacao = st.text_input('Nova entrada')
 
