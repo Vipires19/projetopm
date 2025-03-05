@@ -93,7 +93,7 @@ def alimentando_banco():
         fuso_horario_brasilia = pytz.timezone("America/Sao_Paulo")
 
         col1,col2,col3,col4,col5,col6 = st.columns(6)
-        documento = ['RG', 'CPF', 'MATRICULA']
+        
         placa1 = col1.text_input('Placa')
         placa2 = col2.text_input('Numero', label_visibility='hidden')
         placa_comp = f'{placa1.upper()}-{placa2.upper()}'
@@ -132,14 +132,23 @@ def editar_dados():
         nomes.append(item.get('Nome'))
     name = st.selectbox('Abordado', nomes)
 
-    campo = ['Nome', 'Documento', 'Mae', 'Pai', 'Vulgo', 'Nascimento', 'Endereço', 'Bairro', 'Cidade']
+    campo = ['Nome', 'Documentos', 'Mae', 'Pai', 'Vulgo', 'Nascimento', 'Endereço', 'Bairro', 'Cidade']
     campos = st.selectbox('Campo a ser editado', campo)
-    informacao = st.text_input('Nova entrada')
+    if campos == 'Documentos':
+        documento = ['RG', 'CPF', 'MATRICULA']
+        doc = st.selectbox('Documento', documento)
+        informacao = st.text_input('Nova entrada')    
+        atualiza_info = st.button('Editar informação')
+        if atualiza_info:
+            coll2.update_one({'Nome': name}, {'$set' : {campos : {doc : informacao}})
+            st.rerun()
+    else:            
+        informacao = st.text_input('Nova entrada')
 
-    atualiza_info = st.button('Editar informação')
-    if atualiza_info:
-        coll2.update_one({'Nome': name}, {'$set' : {campos : informacao.upper()}})
-        st.rerun()
+        atualiza_info = st.button('Editar informação')
+        if atualiza_info:
+            coll2.update_one({'Nome': name}, {'$set' : {campos : informacao.upper()}})
+            st.rerun()
 
 def selecionando_individuo():
     pesquisa = st.selectbox('Metodo de pesquisa', ['Cidade', 'Nome'])
