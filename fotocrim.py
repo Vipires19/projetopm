@@ -140,7 +140,7 @@ def editar_dados():
         informacao = st.text_input('Nova entrada')    
         atualiza_info = st.button('Editar informação')
         if atualiza_info:
-            coll2.update_one({'Nome': name}, {'$set' : {campos : {doc : informacao}})
+            coll2.update_one({'Nome': name}, {'$set' : {campos : {doc : informacao}}})
             st.rerun()
     else:            
         informacao = st.text_input('Nova entrada')
